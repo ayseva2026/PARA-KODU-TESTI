@@ -80,6 +80,9 @@
     .steps-list li { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid #ede9f8; font-size: 15px; color: #333; line-height: 1.65; }
     .steps-list li:last-child { border-bottom: none; }
     .step-num { min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .meditation-box { margin-top: 6px; padding: 18px 20px; border-radius: 14px; background: rgba(237,233,251,0.6); border: 1.5px solid #c9c0f0; }
+    .meditation-title { font-size: 13px; font-weight: 700; color: #534AB7; margin-bottom: 8px; letter-spacing: 0.03em; }
+    .meditation-box p { font-size: 15px; color: #333; line-height: 1.8; }
     .restart-btn { display: block; width: 100%; margin-top: 2rem; padding: 15px; background: linear-gradient(135deg, #6c63d5, #a78bcc); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
     .restart-btn:hover { opacity: 0.9; }
     @media (max-width: 480px) {
@@ -121,14 +124,14 @@ var profiles = {
       "Kıtlık savaşçıları genellikle iki uç arasında gidip gelir: ya aşırı çalışır ve tükenir, ya da 'nasıl olsa bitmeyecek' duygusuyla parayı elde kalır gelmez harcayarak sıfırlarlar.",
       "Paranın 'zor' olduğuna dair inanç, zihne adeta bir filtre koyar. Bu filtre, kolayca gelen fırsatları görmemeni ya da 'bu kadar kolay olamaz' diyerek reddetmeni sağlar."
     ],
-    origin: "Bu kod çoğunlukla maddi sıkıntı yaşayan bir ailede büyümekten, 'para için ter dökülür' gibi tekrarlayan mesajlardan ya da çocuklukta para yüzünden yaşanan çatışmaları izlemekten beslenir.",
+    origin: "Bu kod çoğunlukla maddi sıkıntı yaşayan bir ailede büyümekten, 'para için ter dökülür' gibi tekrarlayan mesajlardan ya da çocuklukta para yüzünden yaşanan çatışmaları izlemekten beslenir. Beyin bu anları 'para eşittir stres ve mücadele' olarak kodlar.",
     steps: [
-      "Kıtlık Günlüğü: Her akşam 'Bugün hayatımda ne boldu?' diye yaz. Beyin, aradığı kanıtı bulduğunda kıtlık filtresini otomatik olarak yumuşatmaya başlar.",
-      "Nöral Yeniden Yazma: Aynaya bak ve 'Para benim için çalışır, ben para için değil' cümlesini 21 gün boyunca her sabah yüksek sesle söyle. Tekrar, bilinçaltı inancı yeniden kodlar.",
-      "Bolluk Kanıtı Koleksiyonu: Telefonuna 'Bolluk' adlı bir albüm oluştur. Her gün sana ücretsiz ya da kolay gelen bir şeyin fotoğrafını çek — gün ışığı, bir arkadaşın mesajı, güzel bir müzik. Beyin kanıt topladıkça 'zor' inancı zayıflar.",
-      "Beden Tarama Egzersizi: Para hakkında düşündüğünde bedeninde nerede gerilme hissediyorsun? O bölgeye elini koy ve 'Bu his eski bir inanç, gerçek değil' de. Beden, bilinçaltı programların deposudur.",
-      "🧘 Para Meditasyonu — Kıtlık Kodunu Çözme: Rahat bir pozisyonda otur, gözlerini kapat. 4 nefes al. Zihninde küçük yaşta para hakkında duyduğun bir cümleyi canlandır. O cümleyi söyleyen kişiyi sevgiyle gör ve içinden de ki: 'Bu inanç sana ait, bana değil. Ben şimdi seçiyorum.' Her nefeste bedenindeki gerilimin eridiğini hisset. Son nefeste içinden 'Para hayatıma kolaylıkla akar' de. Bu meditasyonu 21 gün sabahları uygula."
-    ]
+      "Kıtlık Günlüğü: Her akşam 'Bugün hayatımda ne boldu?' diye yaz. Beyin aradığı kanıtı bulduğunda kıtlık filtresini otomatik olarak yumuşatmaya başlar.",
+      "Nöral Yeniden Yazma: Aynaya bak ve 'Para benim için çalışır, ben para için değil' cümlesini 21 gün boyunca her sabah yüksek sesle söyle.",
+      "Bolluk Kanıtı Koleksiyonu: Telefonuna 'Bolluk' adlı bir albüm oluştur. Her gün sana ücretsiz ya da kolayca gelen bir şeyin fotoğrafını çek — gün ışığı, bir arkadaşın mesajı, güzel bir müzik.",
+      "Beden Tarama Egzersizi: Para hakkında düşündüğünde bedeninde nerede gerilme hissediyorsun? O bölgeye elini koy ve 'Bu his eski bir inanç, gerçek değil' de."
+    ],
+    meditation: "Kıtlık Kodunu Çözme Meditasyonu: Rahat bir yere otur, gözlerini kapat. Dört derin nefes al. Zihninde küçük yaşta para hakkında duyduğun bir cümleyi canlandır. O cümleyi söyleyen kişiyi sevgiyle gör ve için den de ki: 'Bu inanç sana ait, bana değil. Ben şimdi seçiyorum.' Her nefeste bedenindeki gerilimin eridiğini hisset. Son nefeste için den 'Para hayatıma kolaylıkla akar' de. Bu meditasyonu 21 gün boyunca her sabah uygula."
   },
   K2: {
     name: "Kontrolcü",
@@ -137,16 +140,16 @@ var profiles = {
     desc: "Para senin için kontrol ve güvenlik demek. Harcamak tehlikeli, biriktirmek ise hiçbir zaman yeterli hissettirmiyor. Bilinçaltında 'para kaybedilirse her şey biter' kodu çalışıyor.",
     deep: [
       "Kontrolcüler için para duygusal bir anlam taşır. Cüzdanlarındaki rakam azaldığında sadece finansal değil, varoluşsal bir tehdit hissederler. Biriktirmek rahatlatmak yerine 'daha az kaygı' anlamına gelir; hiç bitmez.",
-      "Paradoks şudur: ne kadar çok biriktirirsen, kaybetme korkusu o kadar büyür. Bilinçaltı 'tehlikeyi' para miktarıyla değil, kontrolü kaybetme ihtimaliyle ölçer."
+      "Paradoks şudur: ne kadar çok biriktirirsen, kaybetme korkusu o kadar büyür. Bilinçaltı tehlikeyi para miktarıyla değil, kontrolü kaybetme ihtimaliyle ölçer."
     ],
-    origin: "Bu kod genellikle ani bir kayıp yaşayan (iflas, işten çıkarılma) ya da ekonomik istikrarsızlık içinde büyüyen ailelerde şekillenir. 'Her şey bir anda gidebilir' dersi, beyne kalıcı bir alarm olarak kazınır.",
+    origin: "Bu kod genellikle ani bir kayıp yaşayan — iflas, işten çıkarılma, ani yoksullaşma — ya da ekonomik istikrarsızlık içinde büyüyen ailelerde şekillenir. 'Her şey bir anda gidebilir' dersi beyne kalıcı bir alarm olarak kazınır.",
     steps: [
-      "Kontrol Haritası: Bir kağıda iki sütun çiz — 'Kontrol edebildiklerim' ve 'Edemeyeceklerim'. Finansal kaygılarını bu iki sütuna yerleştir. Beyin, sınırları gördüğünde belirsiz kaygıyı somutlaştırır ve güç kazanırsın.",
-      "Güven Transferi Egzersizi: Her hafta 50-100 TL'yi plansız bir şekilde harca — ne alacağını önceden bilmeden. Bu egzersiz, kontrolü bırakmanın yıkım değil özgürlük olduğunu bilinçaltına öğretir.",
-      "Kimlik Sorusu Meditasyonu: Gözlerini kapat, derin nefes al ve kendine sor: 'Bankam sıfırlansa, ben kim olurum?' Cevabı yaz. Bu soru, kimliğini para güvenliğinden ayırmanın ilk adımıdır.",
-      "Güvenlik Çapası: Her sabah 3 şey yaz: bir becerin, bir ilişkin, bir deneyimin. Bunlar 'gerçek güvenliğin' çapalarıdır. Zamanla beyin güvenliği para yerine bu çapalarda aramaya başlar.",
-      "🧘 Para Meditasyonu — Kontrolü Bırakma: Sırtın düz otur, ellerin dizlerinde açık dursun. Derin 3 nefes al. Zihninde altın rengi bir ışık topunu hayal et — bu senin finansal enerjin. Şu an o topu sıkıca tuttuğunu fark et. Yavaşça ellerini aç ve o ışığın serbestçe genişlediğini gör. İçinden de ki: 'Kontrol etmediğimde de güvendeyim. Para bana güvenli şekilde akar.' Her nefeste ellerin daha da açılsın. Meditasyonu haftada 3 kez, tercihen akşam uygula."
-    ]
+      "Kontrol Haritası: Bir kağıda iki sütun çiz — 'Kontrol edebildiklerim' ve 'Edemeyeceklerim'. Finansal kaygılarını bu iki sütuna yerleştir. Beyin sınırları gördüğünde belirsiz kaygıyı somutlaştırır.",
+      "Güven Transferi Egzersizi: Her hafta küçük bir miktarı plansız harca — ne alacağını önceden bilmeden. Bu egzersiz kontrolü bırakmanın yıkım değil özgürlük olduğunu bilinçaltına öğretir.",
+      "Kimlik Sorusu: Kendine sor — 'Bankam sıfırlansa, ben kim olurum?' Cevabı yaz. Bu soru kimliğini para güvenliğinden ayırmanın ilk adımıdır.",
+      "Güvenlik Çapası: Her sabah 3 şey yaz: bir becerin, bir ilişkin, bir deneyimin. Bunlar gerçek güvenliğinin çapalarıdır. Zamanla beyin güvenliği para yerine bu çapalarda arar."
+    ],
+    meditation: "Kontrolü Bırakma Meditasyonu: Sırtın düz otur, ellerin dizlerinde açık dursun. Üç derin nefes al. Zihninde altın rengi bir ışık topunu hayal et — bu senin finansal enerjin. Şu an o topu sıkıca tuttuğunu fark et. Yavaşça ellerini aç ve o ışığın serbestçe genişlediğini gör. İçinden de ki: 'Kontrol etmediğimde de güvendeyim. Para bana güvenli şekilde akar.' Her nefeste ellerin daha da açılsın. Bu meditasyonu haftada üç kez, tercihen akşam uygula."
   },
   H: {
     name: "Hak Etmeyici",
@@ -154,17 +157,17 @@ var profiles = {
     badge_bg: "#EAF3DE", badge_color: "#3B6D11",
     desc: "Derinlerde 'ben bunu hak etmiyorum' kodu var. Fırsatlar geldiğinde geri çekilir, başarıya yaklaştığında onu sabote edebilirsin.",
     deep: [
-      "Hak etmeyiciler çoğunlukla çevrelerindeki insanlara son derece cömert davranırken kendilerine en temel şeyleri bile çok görürler. Servet, bilinçaltında 'benim için değil' etiketiyle işaretlenmiştir.",
+      "Hak etmeyiciler çoğunlukla çevrelerindeki insanlara son derece cömert davranırken kendilerine en temel şeyleri bile çok görürler. Servet bilinçaltında 'benim için değil' etiketiyle işaretlenmiştir.",
       "Bu profildeki kişilerin en büyük tuzağı bilinçdışı sabotajdır. Başarıya çok yaklaştıklarında farkında olmadan fırsatları kaçıran kararlar alırlar."
     ],
-    origin: "Bu kod en çok eleştiri yoğun ya da koşullu sevgi ortamlarında büyüyen bireylerde görülür. 'Şımarma', 'bizim yerimiz bu' gibi mesajlar, çocuğun zihnine 'sen fazla değilsin' şablonunu işler.",
+    origin: "Bu kod en çok eleştiri yoğun ya da koşullu sevgi ortamlarında büyüyen bireylerde görülür. 'Şımarma', 'bizim yerimiz bu' gibi mesajlar çocuğun zihnine 'sen fazla değilsin' şablonunu işler.",
     steps: [
-      "Ayna Protokolü: Her sabah aynaya bak ve 'Ben değerliyim ve refah benim doğal hakkım' cümlesini söyle. İlk başta garip gelecek — bu, inancın direnci değil, değişimin başladığının işaretidir.",
-      "Almayı Öğrenme Ritüeli: Bu hafta sana sunulan her iyiliği, ödülü ya da parayı 'hayır gerek yok' demeden kabul et. Her kabul ettiğinde içinden 'Bunu hak ediyorum' de. Almak, vermeyi öğrenmek kadar önemlidir.",
-      "Sabotaj Farkındalık Günlüğü: Son 3 ayda 'neredeyse oluyordu ama olmadı' dediğin 3 durumu yaz. Her birinde gerçekten ne oldu? Hazır değil miydin, yoksa bilinçaltın seni geri mi çekti? Bu soruyu dürüstçe yanıtlamak kalıbı kırar.",
-      "Gelecek Benlik Mektubu: 5 yıl sonraki kendine bir mektup yaz. O kişi finansal olarak ne başardı, nasıl hissediyor? Bu egzersiz bilinçaltına 'o gelecek benim için mümkün' sinyali gönderir ve hak etme inancını yeniden inşa eder.",
-      "🧘 Para Meditasyonu — Hak Etme Kapısını Açma: Rahat uzan ya da otur. Göğsünün ortasına elini koy. 5 derin nefes al. Zihninde küçük yaşta 'sen fazla değilsin' mesajını aldığın bir anı gör — ama bu sefer sen o çocuğun yanındasın. O çocuğa bak ve de ki: 'Sen değerlisin. Refah senin hakkın.' O çocuğun gülümsediğini hisset. Şimdi o sıcaklığı göğsünden tüm bedenine yay. Son nefeste de ki: 'Ben hak ediyorum.' Bu meditasyonu en az 7 gün arka arkaya uygula."
-    ]
+      "Ayna Protokolü: Her sabah aynaya bak ve 'Ben değerliyim, refah benim doğal hakkım' cümlesini söyle. İlk başta garip gelecek — bu değişimin başladığının işaretidir.",
+      "Almayı Öğrenme Ritüeli: Bu hafta sana sunulan her iyiliği ve parayı 'hayır gerek yok' demeden kabul et. Her kabul ettiğinde için den 'Bunu hak ediyorum' de.",
+      "Sabotaj Farkındalık Günlüğü: Son üç ayda 'neredeyse oluyordu ama olmadı' dediğin üç durumu yaz. Her birinde gerçekten ne oldu? Bilinçaltın seni geri mi çekti?",
+      "Gelecek Benlik Mektubu: Beş yıl sonraki kendine bir mektup yaz. O kişi finansal olarak ne başardı, nasıl hissediyor? Bu egzersiz bilinçaltına 'o gelecek benim için mümkün' sinyali gönderir."
+    ],
+    meditation: "Hak Etme Kapısını Açma Meditasyonu: Rahat uzan ya da otur. Göğsünün ortasına elini koy. Beş derin nefes al. Zihninde küçük yaşta 'sen fazla değilsin' mesajını aldığın bir anı gör — ama bu sefer sen o çocuğun yanındasın. O çocuğa bak ve de ki: 'Sen değerlisin. Refah senin hakkın.' O çocuğun gülümsediğini hisset. Şimdi o sıcaklığı göğsünden tüm bedenine yay. Son nefeste de ki: 'Ben hak ediyorum.' Bu meditasyonu en az yedi gün arka arkaya uygula."
   },
   B: {
     name: "Bolluk Yaratıcısı",
@@ -172,17 +175,17 @@ var profiles = {
     badge_bg: "#EEEDFE", badge_color: "#534AB7",
     desc: "Para senin için akışta. Bilinçaltında 'yeterince var ve daha fazlası geliyor' kodu güçlü. Ancak bu inanç zaman zaman plansız harcamaya sürükleyebilir.",
     deep: [
-      "Bolluk yaratıcıları fırsatları çok daha kolay görür ve harekete geçer. Bu onların en büyük gücüdür. Ancak 'her şey yoluna girer' inancı, uzun vadeli finansal planlama konusunda kör noktalar yaratabilir.",
+      "Bolluk yaratıcıları fırsatları çok daha kolay görür ve harekete geçer. Bu onların en büyük gücüdür. Ancak 'her şey yoluna girer' inancı uzun vadeli finansal planlama konusunda kör noktalar yaratabilir.",
       "Bolluk zihniyetinin sağlam finansal alışkanlıklarla desteklenmesi gerekir. Gelen enerji doğru kanallara aktarılmadığında servet birikmez, sadece döner."
     ],
     origin: "Bu kod genellikle parayı doğal ve nötr bir araç olarak gören, finansal konularda açık iletişim kuran ailelerde ya da erken yaşta olumlu finansal deneyimler yaşayan bireylerde gelişir.",
     steps: [
-      "Bolluk Vizyonu: Her hafta 10 dakika boyunca gözlerini kapat ve finansal hedefine ulaşmış halini tüm duyularınla hisset — ne görüyorsun, ne duyuyorsun, nasıl hissediyorsun? Bilinçaltı, duygu yüklü görüntüyü gerçekmiş gibi işler ve bu yönde adım atmanı kolaylaştırır.",
-      "Para Akış Denetimi: Ayda bir kez tüm para girişlerini ve çıkışlarını bir sayfaya yaz. Sadece miktar değil, her harcamanın arkasındaki duyguyu da not et. Bolluk zihniyeti + bilinçli akış = kalıcı servet.",
-      "Değer Temelli Harcama: Önümüzdeki 30 gün boyunca her harcama öncesinde 'Bu benim için gerçekten değerli mi?' diye sor. Evet ise keyifle yap, hayır ise beklet. Bu pratik, bolluk enerjini doğru kanallara yönlendirir.",
-      "Servet Elçisi Rolü: Bu ay öğrendiğin bir finansal içgörüyü — bir arkadaşınla, sosyal medyada ya da yazılı olarak — başkasıyla paylaş. Öğretmek inancı derinleştirir; bolluk paylaşıldıkça büyür.",
-      "🧘 Para Meditasyonu — Bolluk Akışını Güçlendirme: Dik otur, ellerin avucu yukarı açık olsun. Derin 4 nefes al. Zihninde sonsuz bir enerji kaynağından altın rengi bir ışık aktığını hayal et — önce ellerin, sonra kalbin, sonra tüm bedenin dolana kadar. İçinden de ki: 'Ben bu akışın bir parçasıyım. Para bana kolaylıkla gelir ve değer yaratarak akar.' O dolgunluk hissini 2-3 dakika tut. Meditasyonu her Pazar sabahı haftanın niyetiyle birlikte uygula."
-    ]
+      "Bolluk Vizyonu: Her hafta on dakika boyunca gözlerini kapat ve finansal hedefine ulaşmış halini tüm duyularınla hisset. Bilinçaltı duygu yüklü görüntüyü gerçekmiş gibi işler.",
+      "Para Akış Denetimi: Ayda bir kez tüm para girişlerini ve çıkışlarını yaz. Sadece miktarı değil, her harcamanın arkasındaki duyguyu da not et.",
+      "Değer Temelli Harcama: Otuz gün boyunca her harcama öncesinde 'Bu benim için gerçekten değerli mi?' diye sor. Evet ise keyifle yap, hayır ise beklet.",
+      "Servet Elçisi Rolü: Bu ay öğrendiğin bir finansal içgörüyü bir arkadaşınla ya da sosyal medyada paylaş. Öğretmek inancı derinleştirir; bolluk paylaşıldıkça büyür."
+    ],
+    meditation: "Bolluk Akışını Güçlendirme Meditasyonu: Dik otur, ellerin avucu yukarı açık olsun. Dört derin nefes al. Zihninde sonsuz bir enerji kaynağından altın rengi bir ışık aktığını hayal et — önce ellerin, sonra kalbin, sonra tüm bedenin dolana kadar. İçinden de ki: 'Ben bu akışın bir parçasıyım. Para bana kolaylıkla gelir ve değer yaratarak akar.' O dolgunluk hissini iki ila üç dakika tut. Bu meditasyonu her Pazar sabahı haftanın niyetiyle birlikte uygula."
   }
 };
 
@@ -191,7 +194,7 @@ var qs = [
   { q: "Bir arkadaşın büyük bir servet edindiğinde içinden ne geçer?", opts: [["Onlar şanslı, ben hep geride kalırım.", "K"], ["Acaba bu sürecekte mi, nasıl koruyor?", "K2"], ["Keşke ben de cesaret edebilseydim.", "H"], ["Harika! Bu benim için de mümkün olduğunu gösteriyor.", "B"]] },
   { q: "Para konusunda en çok hangi cümle sana tanıdık gelir?", opts: [["Para kazanmak çok zor.", "K"], ["Param olduğunda kendimi güvende hissederim.", "K2"], ["Ben zengin olmaya layık biri değilim.", "H"], ["Para gelir ve gider, önemli olan akışta kalmak.", "B"]] },
   { q: "Büyük bir harcama yapmadan önce kendini nasıl hissedersin?", opts: [["Endişelenip erteleyebilirim, ne olur ne olmaz.", "K"], ["Çok analiz eder, uzun süre karar veremem.", "K2"], ["'Bu kadar harcamayı hak ediyor muyum?' diye düşünürüm.", "H"], ["Değer katıyorsa keyifle yaparım.", "B"]] },
-  { q: "Çocukluğunda para hakkında en sık duyduğun şey neydi?", opts: [["'Para ağacında bitmez', 'zor kazanılır'.", "K"], ["'Parayı iyi koru, yarın ne olur belli olmaz'.", "K2"], ["'Zenginler bize göre değil', 'bize fazlası yakışmaz'.", "H"], ["Para hayatın bir parçasıdır, doğal bir şey.", "B"]] },
+  { q: "Çocukluğunda para hakkında en sık duyduğun şey neydi?", opts: [["'Para ağacında bitmez, zor kazanılır.'", "K"], ["'Parayı iyi koru, yarın ne olur belli olmaz.'", "K2"], ["'Zenginler bize göre değil, bize fazlası yakışmaz.'", "H"], ["Para hayatın bir parçasıdır, doğal bir şeydir.", "B"]] },
   { q: "Bir işte başarıya çok yaklaştığında ne olur?", opts: [["Kazanırsam ne kadar sürer diye endişelenirim.", "K"], ["Kaybedeceğimden korkar, sıkı tutunurum.", "K2"], ["Bir engel çıkar ya da vazgeçirim.", "H"], ["Devam eder, bir sonraki adımı planlarım.", "B"]] },
   { q: "Başkasına para vermen gerektiğinde ne hissedersin?", opts: [["İçim sıkışır, azalıyor hissederim.", "K"], ["Her kuruşu takip ederim.", "K2"], ["'Zaten çok az param var' derim.", "H"], ["Verebiliyorsam mutlu olurum, döner.", "B"]] },
   { q: "Para ile ilgili en büyük korkunuz hangisine daha yakın?", opts: [["Her şeyi kaybetmek ve sıfırdan başlamak.", "K"], ["Kontrolü kaybetmek, parayı yanlış yönetmek.", "K2"], ["Hiçbir zaman gerçekten refaha kavuşamamak.", "H"], ["Parayı anlamsız şeylere harcayıp değerleri kaçırmak.", "B"]] },
@@ -277,6 +280,8 @@ function showResult() {
       return '<li><span class="step-num" style="background:'+p.bg+';color:'+p.color+'">'+(i+1)+'</span><span>'+s+'</span></li>';
     }).join('') +
     '</ul>' +
+    '<div class="section-title">Para Meditasyonu</div>' +
+    '<div class="meditation-box"><div class="meditation-title">🧘 Özel Para Meditasyonun</div><p>'+p.meditation+'</p></div>' +
     '<button class="restart-btn" onclick="restart()">Testi Yeniden Başlat</button>';
 
   setTimeout(function(){
