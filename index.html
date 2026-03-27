@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Kodunu Keşfet</title>
+  <meta name="description" content="Bilinçaltındaki para kodunu keşfet. 10 soruluk bu test ile hangi para inancının seni yönlendirdiğini öğren." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f7f6f3;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+      color: #1a1a1a;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+      max-width: 640px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+    }
+    .header { text-align: center; margin-bottom: 2.5rem; }
+    .header-tag {
+      display: inline-block;
+      background: #EEEDFE;
+      color: #534AB7;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .header h1 { font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; line-height: 1.3; }
+    .header p { font-size: 15px; color: #666; line-height: 1.6; }
+    .start-btn {
+      display: block;
+      width: 100%;
+      margin-top: 1.8rem;
+      padding: 15px;
+      background: #534AB7;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .start-btn:hover { background: #3C3489; }
+    .progress-bg { height: 6px; background: #f0eff8; border-radius: 3px; margin-bottom: 1.8rem; }
+    .progress-fill { height: 100%; background: #534AB7; border-radius: 3px; transition: width 0.4s ease; }
+    .q-step { font-size: 12px; color: #999; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; }
+    .q-text { font-size: 18px; font-weight: 600; color: #1a1a1a; margin-bottom: 1.6rem; line-height: 1.55; }
+    .opt {
+      display: block; width: 100%; text-align: left;
+      padding: 14px 18px; margin-bottom: 10px;
+      background: #fff; border: 1.5px solid #e8e7f5;
+      border-radius: 12px; font-size: 15px; color: #1a1a1a;
+      cursor: pointer; transition: all 0.2s; line-height: 1.45;
+    }
+    .opt:hover { border-color: #7F77DD; background: #f5f4fd; }
+    .opt.selected { border-color: #534AB7; background: #EEEDFE; color: #3C3489; }
+    .opt:disabled { cursor: default; }
+    /* RESULT */
+    .profile-badge {
+      display: inline-block; padding: 6px 16px;
+      border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .profile-title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; }
+    .profile-sub { font-size: 15px; color: #555; line-height: 1.75; margin-bottom: 0; }
+    .section-title {
+      font-size: 11px; font-weight: 700; color: #999;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin: 2rem 0 0.8rem;
+    }
+    .deep-box {
+      padding: 20px 22px; border-radius: 14px;
+      border: 1.5px solid #e8e8e8; background: #fafaf9;
+    }
+    .deep-box p { font-size: 15px; color: #333; line-height: 1.8; margin-bottom: 12px; }
+    .deep-box p:last-child { margin-bottom: 0; }
+    .origin-box {
+      padding: 16px 20px; border-left: 3px solid #7F77DD;
+      background: #fafaf9; border-radius: 0 10px 10px 0;
+    }
+    .origin-box p { font-size: 15px; color: #333; line-height: 1.75; }
+    .belief-row { margin-bottom: 14px; }
+    .belief-label { display: flex; justify-content: space-between; font-size: 13px; color: #777; margin-bottom: 6px; }
+    .belief-label span:last-child { font-weight: 600; color: #1a1a1a; }
+    .bar-bg { height: 8px; background: #f0eff8; border-radius: 4px; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+    .codes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0.6rem; }
+    .code-card { padding: 14px 16px; border-radius: 12px; border: 1.5px solid #e8e7f5; }
+    .code-card.active { border-width: 2px; }
+    .code-name { font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+    .code-pct { font-size: 24px; font-weight: 700; }
+    .steps-list { margin: 0; padding: 0; list-style: none; }
+    .steps-list li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid #f0eff8;
+      font-size: 15px; color: #333; line-height: 1.65;
+    }
+    .steps-list li:last-child { border-bottom: none; }
+    .step-num {
+      min-width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .restart-btn {
+      display: block; width: 100%; margin-top: 2rem;
+      padding: 15px; background: #534AB7; color: #fff;
+      border: none; border-radius: 12px; font-size: 16px;
+      font-weight: 600; cursor: pointer; transition: background 0.2s;
+    }
+    .restart-btn:hover { background: #3C3489; }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.75rem 3rem; }
+      .card { padding: 1.8rem 1.2rem; border-radius: 16px; }
+      .header h1 { font-size: 22px; }
+      .q-text { font-size: 17px; }
+      .codes-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div id="start-screen">
+    <div class="header">
+      <div class="header-tag">Bilinçaltı Testi</div>
+      <h1>Para Kodunu Keşfet</h1>
+      <p>10 kısa soruyla bilinçaltındaki para inancını ve finansal davranışlarını şekillendiren derin kodu öğren.</p>
+      <button class="start-btn" onclick="startQuiz()">Teste Başla →</button>
+    </div>
+  </div>
+
+  <div id="quiz-screen" style="display:none">
+    <div class="progress-bg"><div class="progress-fill" id="prog" style="width:10%"></div></div>
+    <div class="q-step" id="q-step">Soru 1 / 10</div>
+    <div class="q-text" id="q-text"></div>
+    <div id="opts"></div>
+  </div>
+
+  <div id="result-screen" style="display:none"></div>
+</div>
+
+<script>
+const profiles = {
+  K: {
+    name: "Kıtlık Savaşçısı",
+    color: "#993C1D", bg: "#FAECE7", border: "#D85A30",
+    badge_bg: "#FAECE7", badge_color: "#993C1D",
+    desc: "Para için sürekli savaşıyorsun. Bilinçaltında 'yeterli olmaz' kodu aktif. Bu inanç seni hem aşırı çalışmaya hem de kazandığını hızla harcamaya yönlendirebilir.",
+    deep: [
+      "Kıtlık savaşçıları genellikle iki uç arasında gidip gelir: ya aşırı çalışır ve tükenir, ya da 'nasıl olsa bitmeyecek' duygusuyla parayı elde kalır gelmez harcayarak sıfırlarlar. Bu döngü bilinçdışı bir sabotaj değil, bilinçaltının 'tehlikeli olan şeyi uzaklaştır' komutunun yansımasıdır.",
+      "Paranın 'zor' olduğuna dair inanç, zihne adeta bir filtre koyar. Bu filtre, kolayca gelen fırsatları görmemeni ya da 'bu kadar kolay olamaz' diyerek reddetmeni sağlar. Servet, emek olmadan gelmez kodun her bolluk kapısında el freni çeker."
+    ],
+    origin: "Bu kod çoğunlukla maddi sıkıntı yaşayan bir ailede büyümekten, 'para için ter dökülür' gibi tekrarlayan mesajlardan ya da çocuklukta para yüzünden yaşanan çatışmaları izlemekten beslenir. Beyin, bu anları 'para = stres ve mücadele' olarak kodlar.",
+    steps: [
+      "Her gün 5 dakika boyunca elinde olan şeyleri (sağlık, ilişki, beceri) sesli olarak say. Beyin bolluk kanıtı aradığında kıtlık filtresini yumuşatır.",
+      "Harcadığın ya da kazandığın parayı 'azaldı' yerine 'döndü' olarak yeniden çerçevele. Dil, bilinçaltı programlamayı doğrudan etkiler.",
+      "Bir hafta boyunca her aldığın para için kısa bir minnettarlık notu yaz. Bu alışkanlık, 'para gelir' nöral yolunu güçlendirir.",
+      "Kendine şu soruyu sor: 'Bu kararı bolluktan mı, korkudan mı alıyorum?' Farkındalık, otomatik kıtlık tepkisini yavaşlatır."
+    ]
+  },
+  K2: {
+    name: "Kontrolcü",
+    color: "#185FA5", bg: "#E6F1FB", border: "#378ADD",
+    badge_bg: "#E6F1FB", badge_color: "#185FA5",
+    desc: "Para senin için kontrol ve güvenlik demek. Harcamak tehlikeli, biriktirmek ise hiçbir zaman yeterli hissettirmiyor. Bilinçaltında 'para kaybedilirse her şey biter' kodu çalışıyor.",
+    deep: [
+      "Kontrolcüler için para, sevgi ya da değer gibi duygusal bir anlam taşır. Cüzdanlarındaki rakam azaldığında sadece finansal değil, varoluşsal bir tehdit hissederler. Bu yüzden biriktirmek rahatlatmak yerine 'daha az kaygı' anlamına gelir; hiç bitmez.",
+      "Paradoks şudur: ne kadar çok biriktirirsen, kaybetme korkusu o kadar büyür. Bilinçaltı 'tehlikeyi' para miktarıyla ölçmez; kontrolü kaybetme ihtimaliyle ölçer. Bu nedenle finansal güvenlik artsa da içsel güvensizlik azalmaz."
+    ],
+    origin: "Bu kod genellikle ani bir kayıp yaşayan (iflas, işten çıkarılma, ani yoksullaşma) ya da ekonomik istikrarsızlık içinde büyüyen ailelerde şekillenir. 'Her şey bir anda gidebilir' dersi, beyne kalıcı bir alarm olarak kazınır.",
+    steps: [
+      "Finansal kararlarında 'bu beni gerçekten güvende tutar mı, yoksa sadece kontrol hissimi mi tatmin eder?' diye sor. İkisi farklı şeydir.",
+      "Küçük, planlı bir harcama yap (kendine bir iyilik) ve sonrasında hislerini gözlemle. Kontrol kaybı değil, seçim gücü hissedebilirsin.",
+      "Güvenlik duygusunu para dışında bir şeye bağlamayı dene: becerилерин, ilişkilerin, uyum yeteneğin. Bunlar 'banka hesabı sıfırlansa da kalır' varlıklardır.",
+      "Her hafta bir konuda kontrolü bilinçli olarak bırak (finansal olmayan). Bu, beynin kontrol=güvenlik denklemini yeniden yapılandırmasına yardımcı olur."
+    ]
+  },
+  H: {
+    name: "Hak Etmeyici",
+    color: "#3B6D11", bg: "#EAF3DE", border: "#639922",
+    badge_bg: "#EAF3DE", badge_color: "#3B6D11",
+    desc: "Derinlerde 'ben bunu hak etmiyorum' kodu var. Fırsatlar geldiğinde geri çekilir, başarıya yaklaştığında onu sabote edebilirsin.",
+    deep: [
+      "Hak etmeyiciler çoğunlukla çevrelerindeki insanlara son derece cömert davranırken kendilerine en temel şeyleri bile çok görürler. Bu 'başkası önce' kodunun ardında 'ben değerliyim' inancının yokluğu yatar. Servet, bilinçaltında 'benim için değil' etiketiyle işaretlenmiştir.",
+      "Bu profildeki kişilerin en büyük tuzağı bilinçdışı sabotajdır. İş hayatında ya da finansal olarak başarıya çok yaklaştıklarında, farkında olmadan ilişkileri zedeleyen, fırsatları kaçıran ya da sağlığını ihmal eden kararlar alırlar."
+    ],
+    origin: "Bu kod en çok eleştiri yoğun ya da koşullu sevgi ortamlarında büyüyen bireylerde görülür. 'Daha iyi yapabilirdin', 'şımarma', 'bizim yerimiz bu' gibi mesajlar, çocuğun zihnine 'sen fazla değilsin' şablonunu işler.",
+    steps: [
+      "Her sabah kendine 'Bugün neyi hak ediyorum?' sorusunu sor ve en az 3 şey say. Küçük başla: dinlenmeyi, güzel bir yemeği, bir iltifatı kabul etmeyi.",
+      "Birisi sana iyilik yaptığında ya da para verdiğinde 'hayır gerek yok' demek yerine sadece 'teşekkür ederim' de. Almayı öğrenmek, hak etme inancını yeniden inşa eder.",
+      "Geçmişte reddettiğin bir fırsatı düşün. O an gerçekten hazır değil miydin, yoksa hak etmediğini mi hissettin? Bu soruyu dürüstçe yanıtlamak, kalıpları görünür kılar.",
+      "Kendine maddi bir hedef belirle ve her gün 1 dakika boyunca o hedefe ulaşmış halini görselleştir. Bilinçaltına 'bu benim için mümkün' mesajını tekrar tekrar gönder."
+    ]
+  },
+  B: {
+    name: "Bolluk Yaratıcısı",
+    color: "#534AB7", bg: "#EEEDFE", border: "#7F77DD",
+    badge_bg: "#EEEDFE", badge_color: "#534AB7",
+    desc: "Para senin için akışta. Bilinçaltında 'yeterince var ve daha fazlası geliyor' kodu güçlü. Ancak bu inanç zaman zaman temelsiz iyimserliğe ya da plansız harcamaya sürükleyebilir.",
+    deep: [
+      "Bolluk yaratıcıları, fırsatları diğer profillere kıyasla çok daha kolay görür ve harekete geçer. Bu onların en büyük gücüdür. Ancak 'her şey yoluna girer' inancı, uzun vadeli finansal planlama ve risk yönetimi konusunda kör noktalar yaratabilir.",
+      "Bu profildeki kişilerin dikkat etmesi gereken şey, bolluk zihniyetinin sağlam finansal alışkanlıklarla desteklenmesi gerektiğidir. Akış gerçek, ama yön önemlidir. Gelen enerji doğru kanallara aktarılmadığında servet birikmez, sadece döner."
+    ],
+    origin: "Bu kod genellikle parayı doğal ve nötr bir araç olarak gören, finansal konularda açık iletişim kuran ailelerde ya da erken yaşta olumlu finansal deneyimler yaşayan bireylerde gelişir.",
+    steps: [
+      "Bolluk enerjini somut bir finansal yapıyla destekle: aylık bütçe, acil fon ve uzun vadeli yatırım hedefleri belirle.",
+      "Her büyük finansal karar öncesinde 'bu gerçekten değer yaratıyor mu, yoksa sadece iyi mi hissettiriyor?' sorusunu sor.",
+      "Gelirinин en az yüzde onunu otomatik olarak birikimlere yönlendir. Bolluk zihniyeti + disiplinli sistem = kalıcı servet.",
+      "Çevrендekilere finansal bolluk zihniyetini aktar. Öğretmek, inancı derinleştirir ve topluluk refahı kişisel refahı besler."
+    ]
+  }
+};
+
+const qs = [
+  { q: "Beklenmedik bir ödeme geldiğinde ilk hissin ne olur?", opts: [["Nasıl harcayacağımı düşünürüm, zaten biter.", "K"], ["Güvende mi, doğru hesapta mı diye kontrol ederim.", "K2"], ["Neden bana geldi, hata mı var diye düşünürüm.", "H"], ["Minnetle kabul eder, hayatıma nasıl değer katacağını düşünürüm.", "B"]] },
+  { q: "Bir arkadaşın büyük bir servet edindiğinde içinden ne geçer?", opts: [["Onlar şanslı, ben hep geride kalırım.", "K"], ["Acaba bu sürecekte mi, nasıl koruyor?", "K2"], ["Keşke ben de cesaret edebilseydim.", "H"], ["Harika! Bu benim için de mümkün olduğunu gösteriyor.", "B"]] },
+  { q: "Para konusunda en çok hangi cümle sana tanıdık gelir?", opts: [["Para kazanmak çok zor.", "K"], ["Param olduğunda kendimi güvende hissederim.", "K2"], ["Ben zengin olmaya layık biri değilim.", "H"], ["Para gelir ve gider, önemli olan akışta kalmak.", "B"]] },
+  { q: "Büyük bir harcama yapmadan önce kendini nasıl hissedersin?", opts: [["Endişelenip erteleyebilirim, ne olur ne olmaz.", "K"], ["Çok analiz eder, uzun süre karar veremem.", "K2"], ["'Bu kadar harcamayı hak ediyor muyum?' diye düşünürüm.", "H"], ["Değer katıyorsa keyifle yaparım.", "B"]] },
+  { q: "Çocukluğunda para hakkında en sık duyduğun şey neydi?", opts: [["'Para ağacında bitmez', 'zor kazanılır'.", "K"], ["'Parayı iyi koru, yarın ne olur belli olmaz'.", "K2"], ["'Zenginler bize göre değil', 'bize fazlası yakışmaz'.", "H"], ["Para hayatın bir parçasıdır, doğal bir şey.", "B"]] },
+  { q: "Bir işte veya projede başarıya çok yaklaştığında ne olur?", opts: [["Kazanırsam ne kadar sürer diye endişelenirim.", "K"], ["Kaybedeceğimden korkar, sıkı tutunurum.", "K2"], ["Bir engel çıkar ya da vazgeçirim.", "H"], ["Devam eder, bir sonraki adımı planlarım.", "B"]] },
+  { q: "Başkasına para vermen ya da ödeme yapman gerektiğinde...", opts: [["İçim sıkışır, azalıyor hissederim.", "K"], ["Her kuruşu takip eder, geri alabilir miyim diye düşünürüm.", "K2"], ["'Zaten çok az param var, nasıl vereceğim' derim.", "H"], ["Verebiliyorsam mutlu olurum, döner.", "B"]] },
+  { q: "Para ile ilgili en büyük korkunuz hangisine daha yakın?", opts: [["Her şeyi kaybetmek ve sıfırdan başlamak zorunda kalmak.", "K"], ["Kontrolü kaybetmek, parayı yanlış yönetmek.", "K2"], ["Hiçbir zaman gerçekten refaha kavuşamamak.", "H"], ["Parayı anlamsız şeylere harcayıp asıl değerleri kaçırmak.", "B"]] },
+  { q: "Finansal hedef koyduğunda genellikle ne olur?", opts: [["Başlarım ama hayat sekteye uğratır.", "K"], ["Çok detaylı plan yapar, ama başlamak zor olur.", "K2"], ["'Bu benim için olmayabilir' diyerek yarıda bırakabilirim.", "H"], ["Hedefe ulaşırım ya da yeni bir yol bulurum.", "B"]] },
+  { q: "Para konusunda içindeki ses en çok ne söyler?", opts: [["'Hiçbir zaman yeterli olmayacak.'", "K"], ["'Her şeyi kontrol altında tutmalıyım.'", "K2"], ["'Ben bunu hak ediyor muyum?'", "H"], ["'Doğru zamanda doğru şey gelir.'", "B"]] }
+];
+
+let current = 0, scores = {K:0, K2:0, H:0, B:0};
+
+function startQuiz() {
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  render();
+}
+
+function render() {
+  const q = qs[current];
+  document.getElementById('prog').style.width = `${((current+1)/qs.length)*100}%`;
+  document.getElementById('q-step').textContent = `Soru ${current+1} / ${qs.length}`;
+  document.getElementById('q-text').textContent = q.q;
+  const opts = document.getElementById('opts');
+  opts.innerHTML = '';
+  const shuffled = [...q.opts].sort(() => Math.random() - 0.5);
+  shuffled.forEach(([text, code]) => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = text;
+    b.onclick = () => pick(b, code);
+    opts.appendChild(b);
+  });
+}
+
+function pick(btn, code) {
+  document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+  btn.classList.add('selected');
+  scores[code]++;
+  setTimeout(() => {
+    current++;
+    if (current >= qs.length) showResult();
+    else render();
+  }, 500);
+}
+
+function showResult() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  const rs = document.getElementById('result-screen');
+  rs.style.display = 'block';
+  const total = Object.values(scores).reduce((a,b)=>a+b,0);
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const topCode = sorted[0][0];
+  const p = profiles[topCode];
+  const pcts = {};
+  sorted.forEach(([c,v]) => pcts[c] = Math.round((v/total)*100));
+  const barColors = {K:"#D85A30", K2:"#378ADD", H:"#639922", B:"#534AB7"};
+  const beliefs = [{label:"Kıtlık inancı",code:"K"},{label:"Kontrol ihtiyacı",code:"K2"},{label:"Hak etmeme inancı",code:"H"},{label:"Bolluk inancı",code:"B"}];
+
+  rs.innerHTML = `
+    <span class="profile-badge" style="background:${p.badge_bg};color:${p.badge_color}">${p.name}</span>
+    <div class="profile-title">Baskın Para Kodun: ${p.name}</div>
+    <div class="profile-sub">${p.desc}</div>
+    <div class="section-title">Derin Analiz</div>
+    <div class="deep-box">${p.deep.map(d=>`<p>${d}</p>`).join('')}</div>
+    <div class="section-title">Bu Kod Nerede Oluştu?</div>
+    <div class="origin-box"><p>${p.origin}</p></div>
+    <div class="section-title">Bilinçaltı İnanç Haritан</div>
+    ${beliefs.map(b=>`
+      <div class="belief-row">
+        <div class="belief-label"><span>${b.label}</span><span>${pcts[b.code]}%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:0%;background:${barColors[b.code]}" data-w="${pcts[b.code]}"></div></div>
+      </div>`).join('')}
+    <div class="codes-grid">
+      ${sorted.map(([c])=>{
+        const pr=profiles[c]; const isTop=c===topCode;
+        return `<div class="code-card ${isTop?'active':''}" style="background:${isTop?pr.bg:'#fafaf9'};border-color:${isTop?pr.border:'#e8e7f5'}">
+          <div class="code-name" style="color:${pr.color}">${pr.name}</div>
+          <div class="code-pct" style="color:${isTop?pr.color:'#999'}">${pcts[c]}%</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="section-title">Dönüşüm Adımları</div>
+    <ul class="steps-list">
+      ${p.steps.map((s,i)=>`<li>
+        <span class="step-num" style="background:${p.bg};color:${p.color}">${i+1}</span>
+        <span>${s}</span>
+      </li>`).join('')}
+    </ul>
+    <button class="restart-btn" onclick="restart()">Testi Yeniden Başlat</button>
+  `;
+
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-fill').forEach(el=>{
+      el.style.width = el.getAttribute('data-w')+'%';
+    });
+  }, 150);
+}
+
+function restart() {
+  current=0; scores={K:0,K2:0,H:0,B:0};
+  document.getElementById('result-screen').style.display='none';
+  document.getElementById('start-screen').style.display='block';
+}
+</script>
+</body>
+</html>
